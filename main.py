@@ -27,46 +27,25 @@ def main(start_i):
     docx(changes, init, b_dict)
 
 def docx(changes, init, b_dict):
-    print(changes)
-    print(init)
     doc = Document('ds.docx')
     table = doc.tables[0]
-    for (row_idx, col_idx), new_text in init.items():
-        if row_idx >= len(table.rows):
-            print(f"Ошибка: Нет строки {row_idx} в таблице (всего строк: {len(table.rows)}). Пропускаю.")
-            break
-        if col_idx >= len(table.rows[row_idx].cells):
-            print(f"Ошибка: Нет столбца {col_idx} в строке {row_idx}. Пропускаю.")
-            break
-        cell = table.rows[row_idx].cells[col_idx]
-        cell.text = new_text
-        print(f"Обновлена ячейка [{row_idx}][{col_idx}]: '{new_text}'")
+    all_updates = {}
+    for d in [init, changes, b_dict]:
+        all_updates.update(d)
 
-    for (row_idx, col_idx), new_text in changes.items():
-        if row_idx >= len(table.rows):
-            print(f"Ошибка: Нет строки {row_idx} в таблице (всего строк: {len(table.rows)}). Пропускаю.")
-            break
-        if col_idx >= len(table.rows[row_idx].cells):
-            print(f"Ошибка: Нет столбца {col_idx} в строке {row_idx}. Пропускаю.")
-            break
-        # Обновляем существующую ячейку
-        cell = table.rows[row_idx].cells[col_idx]
-        cell.text = new_text
-        print(f"Обновлена ячейка [{row_idx}][{col_idx}]: '{new_text}'")
-        for (row_idx, col_idx), new_text in b_dict.items():
-            if row_idx >= len(table.rows):
-                print(f"Ошибка: Нет строки {row_idx} в таблице (всего строк: {len(table.rows)}). Пропускаю.")
-                break
-            if col_idx >= len(table.rows[row_idx].cells):
-                print(f"Ошибка: Нет столбца {col_idx} в строке {row_idx}. Пропускаю.")
-                break
-            cell = table.rows[row_idx].cells[col_idx]
-            cell.text = new_text
-            print(f"Обновлена ячейка [{row_idx}][{col_idx}]: '{new_text}'")
+    for (row_idx, col_idx), new_text in all_updates.items():
+        update_table_cell(table, row_idx, col_idx, new_text)
 
         # Сохраняем изменения
     doc.save('ds_updated.docx')
     print("Изменения сохранены в ds_updated.docx")
+
+def update_table_cell(table, row_idx, col_idx, new_text):
+    if row_idx >= len(table.rows):
+        print(f"Ошибка: Нет строки {row_idx} в таблице (всего строк: {len(table.rows)}). Пропускаю.")
+    if col_idx >= len(table.rows[row_idx].cells):
+        print(f"Ошибка: Нет столбца {col_idx} в строке {row_idx}. Пропускаю.")
+    print(f"Обновлена ячейка [{row_idx}][{col_idx}]: '{new_text}'")
 
 
 if __name__ == '__main__':
