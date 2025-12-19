@@ -27,7 +27,7 @@ def main(start_i):
     docx(changes, init, b_dict)
 
 def docx(changes, init, b_dict):
-    doc = Document('ds.docx')
+    doc = Document('template.docx')
     table = doc.tables[0]
     all_updates = {}
     for d in [init, changes, b_dict]:
@@ -38,7 +38,7 @@ def docx(changes, init, b_dict):
 
 
         # Сохраняем изменения
-    doc.save('ds_updated.docx')
+    doc.save('template_updated.docx')
     print("Изменения сохранены в ds_updated.docx")
 
 def update_table_cell(table, row_idx, col_idx, new_text):
