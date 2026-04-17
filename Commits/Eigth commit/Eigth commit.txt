@@ -1,0 +1,3 @@
+Eigth commit:
+
+git commit -m "Refactor: Implement OOP for Excel processing and add documentation" -m "- Moved data processing logic into classes (File, ExcelFile, CSVFile) in Synthetic data/excel.py.- Created a 'Commits' directory for a detailed history of changes.- Added an extended description for the 8th commit with bilingual comments (UA/EN) in the source code."

@@ -1,0 +1,11 @@
+Sixth commit
+
+
+git rm template.docx
+git add excel.py, t_*
+git add 'Synthetic data/(RUS-UKR) Большой русско-украинский словарь.csv'
+git add Synthetic data/main.py
+
+Remove template.docx -> create t_1.docx, t_2.docx
+Add excel.py -> to deploy Pandas for work to excel files. Param.: usecols.
+Add dir Synthetic data -> dict RUS-UA translate and main.py - line reading of file with 'natural' data. Create Synthetic Data Set.
