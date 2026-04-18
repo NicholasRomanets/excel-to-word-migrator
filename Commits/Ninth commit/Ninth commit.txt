@@ -1,0 +1,3 @@
+Ninth commit:
+
+git commit -m "Refactor: Moved classes (File, ExcelFile and CSVFile) into classes.py." 
